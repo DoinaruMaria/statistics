@@ -31,3 +31,22 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Eroare la salvarea tranzacției" }, { status: 500 });
   }
 }
+
+// app/api/trades/route.ts
+
+export async function GET() {
+  try {
+    const client = await clientPromise;
+    const db = client.db("trading_db");
+    
+    // Luăm toate trade-urile și le sortăm după dată (cele mai noi primele)
+    const trades = await db.collection("trades")
+      .find({})
+      .sort({ date: -1 })
+      .toArray();
+
+    return NextResponse.json(trades);
+  } catch (e) {
+    return NextResponse.json({ error: "Eroare la preluarea datelor" }, { status: 500 });
+  }
+}

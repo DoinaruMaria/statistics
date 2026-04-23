@@ -111,7 +111,7 @@ export default function PaginaAdaugareTrade() {
             </div>
             <div title="Distanța curentă față de All-Time High">
               <label className={stilLabel}>Distanță față de ATH</label>
-              <input {...register("athDistance")} type="number" className={stilInput} />
+              <input {...register("athDistance")} type="number" step="any" className={stilInput} />
             </div>
           </div>
         </div>
@@ -147,14 +147,27 @@ export default function PaginaAdaugareTrade() {
           </div>
 
           <div className="flex gap-10 mt-8 pt-6">
-             <label className="flex items-center gap-3 cursor-pointer group" title="Bifează dacă există știri economice">
+            <div title="Direcția tranzacției" className="w-48">
+              <label className={stilLabel}>Tip Poziție</label>
+              <div className="flex gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200">
+                <label className="flex-1 text-[10px] py-1.5 font-bold cursor-pointer rounded-lg text-center transition-all has-[:checked]:bg-yellow-500 has-[:checked]:text-slate-900 text-slate-400">
+                  <input type="radio" {...register("orderType")} value="long" className="hidden" defaultChecked /> LONG
+                </label>
+                <label className="flex-1 text-[10px] py-1.5 font-bold cursor-pointer rounded-lg text-center transition-all has-[:checked]:bg-yellow-500 has-[:checked]:text-slate-900 text-slate-400">
+                  <input type="radio" {...register("orderType")} value="short" className="hidden" /> SHORT
+                </label>
+              </div>
+            </div>
+             <div className="flex flex-col gap-3 pb-2">
+              <label className="flex items-center gap-3 cursor-pointer group" title="Bifează dacă există știri economice">
                 <input type="checkbox" {...register("newsDay")} className="w-5 h-5 accent-yellow-400 border-slate-300 rounded-lg transition-all" />
-                <span className="text-sm font-semibold text-slate-600 group-hover:text-slate-900">Zi cu știri</span>
-             </label>
-             <label className="flex items-center gap-3 cursor-pointer group" title="Bifează dacă trade-ul a fost securizat la Break Even">
+                <span className="text-[11px] font-bold text-slate-500 group-hover:text-slate-900 uppercase">Știri</span>
+              </label>
+              <label className="flex items-center gap-3 cursor-pointer group" title="Bifează dacă trade-ul a fost securizat la BE">
                 <input type="checkbox" {...register("be")} className="w-5 h-5 accent-yellow-400 border-slate-300 rounded-lg transition-all" />
-                <span className="text-sm font-semibold text-slate-600 group-hover:text-slate-900">Break Even (BE)</span>
-             </label>
+                <span className="text-[11px] font-bold text-slate-500 group-hover:text-slate-900 uppercase">BE</span>
+              </label>
+            </div>
           </div>
         </div>
 
