@@ -27,7 +27,13 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+     <body className="min-h-screen bg-fixed bg-gradient-to-br from-[#FEFAE0] via-white to-[#FEFAE0]/50">
+        {/* Aici poți adăuga un element decorativ de tip "blob" pentru extra efect de design */}
+        <div className="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-yellow-200/20 blur-[120px] -z-10" />
+        <div className="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-orange-100/30 blur-[120px] -z-10" />
+        
+        {children}
+      </body>
     </html>
   );
 }
