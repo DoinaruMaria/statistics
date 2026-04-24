@@ -2,6 +2,7 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { ITrade } from "@/app/types";
+ import { Clock, BookOpenText, CalendarPlus } from "@phosphor-icons/react";
 
 const dropdown_options = {
   lichiditate: [
@@ -100,12 +101,28 @@ export default function PaginaAdaugareTrade() {
                   <option key={opt.valoare} value={opt.valoare}>{opt.nume}</option>
                 ))}
               </select>
+            </div> 
+            <div title="Ora formare HOD">
+              <label className={stilLabel}>HOD</label>
+              <input {...register("hodTime")} type="time" className={stilInput} />
+            </div>
+            <div title="Ora formare LOD">
+              <label className={stilLabel}>LOD</label>
+              <input {...register("lodTime")} type="time" className={stilInput} />
             </div>
             <div title="Valoarea trebuie exprimată în numărul de candele pe timeframe de 1 minut">
               <label className={stilLabel}>Vechime Lichiditate (Candele 1m)</label>
               <input {...register("liquidityOldness")} type="number" placeholder="ex: 120" className={stilInput} />
             </div>
-            <div title="Minute scurse de la lichiditate până la apariția setup-ului">
+            
+          </div>
+        </div>
+
+        {/* GRUP 3: EXECUȚIE */}
+        <div className="md:col-span-3 bg-white/40 p-8 rounded-[2.5rem] border border-slate-200 shadow-md">
+          <h3 className="text-base font-bold mb-6 text-slate-800 uppercase border-b border-slate-100 pb-2">Configurare Execuție</h3> 
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+             <div title="Minute scurse de la lichiditate până la apariția setup-ului">
               <label className={stilLabel}>Timp până la Setup (min)</label>
               <input {...register("timeToSetup")} type="number" placeholder="ex: 10" className={stilInput} />
             </div>
@@ -113,13 +130,6 @@ export default function PaginaAdaugareTrade() {
               <label className={stilLabel}>Distanță față de ATH</label>
               <input {...register("athDistance")} type="number" step="any" className={stilInput} />
             </div>
-          </div>
-        </div>
-
-        {/* GRUP 3: EXECUȚIE */}
-        <div className="md:col-span-3 bg-white/40 p-8 rounded-[2.5rem] border border-slate-200 shadow-md">
-          <h3 className="text-base font-bold mb-6 text-slate-800 uppercase border-b border-slate-100 pb-2">Configurare Execuție</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div title="Modelul tehnic de intrare">
               <label className={stilLabel}>Tip Setup</label>
               <select {...register("setup")} className={stilInput}>
@@ -145,7 +155,6 @@ export default function PaginaAdaugareTrade() {
               <input {...register("stopLoss")} type="number" step="0.00001" className={stilInput} />
             </div>
           </div>
-
           <div className="flex gap-10 mt-8 pt-6">
             <div title="Direcția tranzacției" className="w-48">
               <label className={stilLabel}>Tip Poziție</label>

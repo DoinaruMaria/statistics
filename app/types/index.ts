@@ -31,7 +31,7 @@ export interface ITrade {
   hodTime?: string;        // Ora High of Day
   lodTime?: string;        // Ora Low of Day
   athDistance?: number;    // Distanța până la ATH
-  liquidityImage: string;  // Link către screenshot
+  liquidityImage?: string;  // Link către screenshot
   setupImage: string;      // Link către screenshot
   notes: string;
   executed: boolean;
