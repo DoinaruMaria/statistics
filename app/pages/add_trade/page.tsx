@@ -158,6 +158,17 @@ export default function PaginaAdaugareTrade() {
                 </label>
               </div>
             </div>
+             <div title="Stare Tranzacție" className="w-64">
+              <label className={stilLabel}>Stare Execuție</label>
+              <div className="flex gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200">
+                <label className="flex-1 text-[10px] py-1.5 font-bold cursor-pointer rounded-lg text-center transition-all has-[:checked]:bg-yellow-500 has-[:checked]:text-slate-900 text-slate-400">
+                  <input type="radio" {...register("executed")} value="true" className="hidden" defaultChecked /> EXECUTAT
+                </label>
+                <label className="flex-1 text-[10px] py-1.5 font-bold cursor-pointer rounded-lg text-center transition-all has-[:checked]:bg-yellow-500 has-[:checked]:text-slate-900 text-slate-400">
+                  <input type="radio" {...register("executed")} value="false" className="hidden" /> NOTAT
+                </label>
+              </div>
+            </div>
              <div className="flex flex-col gap-3 pb-2">
               <label className="flex items-center gap-3 cursor-pointer group" title="Bifează dacă există știri economice">
                 <input type="checkbox" {...register("newsDay")} className="w-5 h-5 accent-yellow-400 border-slate-300 rounded-lg transition-all" />

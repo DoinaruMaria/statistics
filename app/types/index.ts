@@ -34,4 +34,5 @@ export interface ITrade {
   liquidityImage: string;  // Link către screenshot
   setupImage: string;      // Link către screenshot
   notes: string;
+  executed: boolean;
 }

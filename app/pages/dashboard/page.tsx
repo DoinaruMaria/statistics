@@ -1,6 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
 import { ITrade } from "@/app/types";
+import { 
+  TrendUp, 
+  TrendDown, 
+  ChartLine, Notepad
+} from "@phosphor-icons/react";
 
 export default function Dashboard() {
   const [trades, setTrades] = useState<ITrade[]>([]);
@@ -38,12 +43,12 @@ export default function Dashboard() {
           + Adaugă Trade
         </a>
       </header>
+      
 
-      {/* Containerul tabelului - am scos fundalul alb de aici pentru a-l pune pe rânduri */}
       <div className="w-full">
 
         {/* Lista de rânduri */}
-        <div className="space-y-4"> {/* Aici se creează spațiul între rânduri */}
+        <div className="space-y-4"> 
           {incarcare ? (
             <div className="bg-white/40 p-10 text-center rounded-[2rem] border border-white">Se încarcă datele...</div>
           ) : trades.length === 0 ? (
@@ -55,8 +60,9 @@ export default function Dashboard() {
               return (
                 <div 
                   key={trade._id} 
-                  className="grid grid-cols-5 gap-4 items-center bg-white/50 backdrop-blur-md p-4 px-8 rounded-2xl border border-white shadow-sm hover:shadow-md hover:bg-white/70 transition-all group"
+                  className="grid grid-cols-6 gap-4 items-center bg-white/50 backdrop-blur-md p-4 px-8 rounded-2xl border border-white shadow-sm hover:shadow-md hover:bg-white/70 transition-all group"
                 >
+                  
                   {/* DATA */}
                   <div>
                     <div className="text-sm font-bold text-slate-700">
@@ -74,9 +80,11 @@ export default function Dashboard() {
 
                   {/* TIP POZIȚIE */}
                   <div>
-                    <span className="text-[10px] font-black px-3 py-1 rounded-full uppercase text-blue-600 bg-blue-100/50">
-                      {trade.orderType}
-                    </span>
+                      {trade.orderType === 'long' ? (
+                      <TrendUp size={30} color="#1e5de5" weight="bold" className="p-1 bg-blue-100 border border-blue-200 rounded-full"/>
+                    ) : (
+                      <TrendDown size={30} color="#1e5de5" weight="bold" className="p-1 bg-blue-100 border border-blue-200 rounded-full"/> 
+                    )}
                   </div>
 
                   {/* LICHIDITATE */}
@@ -96,6 +104,15 @@ export default function Dashboard() {
                     >
                       {config.label}
                     </span>
+                  </div>
+
+                   {/* STARE EXECUTIE */}
+                   <div className="flex justify-center">
+                    {trade.executed ? (
+                        <ChartLine size={28} weight="bold" className="p-1 bg-slate-50 text-slate-500 border border-slate-200 rounded-full"/>
+                    ) : (
+                        <Notepad size={28} weight="bold" className="p-1 bg-slate-50 text-slate-500 border border-slate-200 rounded-full"/>
+                    )}
                   </div>
                 </div>
               );
