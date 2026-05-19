@@ -171,10 +171,10 @@ export default function PaginaAdaugareTrade() {
               <label className={stilLabel}>Stare Execuție</label>
               <div className="flex gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200">
                 <label className="flex-1 text-[10px] py-1.5 font-bold cursor-pointer rounded-lg text-center transition-all has-[:checked]:bg-yellow-500 has-[:checked]:text-slate-900 text-slate-400">
-                  <input type="radio" {...register("executed")} value="true" className="hidden" defaultChecked /> EXECUTAT
+                  <input type="radio" {...register("executed", { setValueAs: (v) => v === "true" })}  className="hidden" defaultChecked /> EXECUTAT
                 </label>
                 <label className="flex-1 text-[10px] py-1.5 font-bold cursor-pointer rounded-lg text-center transition-all has-[:checked]:bg-yellow-500 has-[:checked]:text-slate-900 text-slate-400">
-                  <input type="radio" {...register("executed")} value="false" className="hidden" /> NOTAT
+                  <input type="radio" {...register("executed", { setValueAs: (v) => v === "false" })} className="hidden" /> NOTAT
                 </label>
               </div>
             </div>

@@ -1,3 +1,5 @@
+import { JSX } from "react/jsx-runtime";
+
 export type LiquidityType = 
   | 'HOD' | 'LOD' | 'Lichiditate majora' 
   | 'Lichiditate locala' | 'Lichiditate minora' 
@@ -11,6 +13,8 @@ export type MSSType = 'normal' | 'agresiv';
 export type OrderType = 'long' | 'short';
 
 export interface ITrade {
+  map(arg0: (trade: any) => JSX.Element): import("react").ReactNode;
+  length: number;
   _id?: string;
   userId: string;
   symbol: string;

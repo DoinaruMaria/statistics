@@ -1,18 +1,19 @@
 import { NextResponse } from 'next/server';
 import clientPromise from '@/lib/mongo';
 
+// Forțează Next.js să ruleze funcția live la fiecare cerere, oprind memoria cache.
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
     const client = await clientPromise;
     const db = client.db("trading_db");
 
-    // Validare minimă (opțional, dar recomandat)
     if (!body.symbol || !body.userId) {
       return NextResponse.json({ error: "Lipsesc date esențiale" }, { status: 400 });
     }
 
-    // Conversia datei din string în obiect Date dacă este cazul
     const tradeData = {
       ...body,
       date: new Date(body.date),
@@ -32,14 +33,11 @@ export async function POST(request: Request) {
   }
 }
 
-// app/api/trades/route.ts
-
 export async function GET() {
   try {
     const client = await clientPromise;
-    const db = client.db("trading_db");
+    const db = client.db("trading_db"); // Ne asigurăm că citim din locul corect
     
-    // Luăm toate trade-urile și le sortăm după dată (cele mai noi primele)
     const trades = await db.collection("trades")
       .find({})
       .sort({ date: -1 })

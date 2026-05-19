@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "../node_modules/@tremor/react";
 
 @theme {
   --color-pastel-yellow: #FEFAE0;
